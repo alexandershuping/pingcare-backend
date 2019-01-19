@@ -24,6 +24,7 @@ from backend import views
 router = routers.DefaultRouter()
 router.register('users', views.UserViewSet)
 router.register('groups', views.GroupViewSet)
+router.register('pings', views.PingViewSet)
 
 urlpatterns = [
 	path('', include(router.urls)),

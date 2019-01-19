@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from backend.serializers import UserSerializer, GroupSerializer
+
+from backend.models import Ping
+from backend.serializers import UserSerializer, GroupSerializer, PingSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
 	''' API endpoint to view/edit users '''
@@ -14,6 +16,11 @@ class GroupViewSet(viewsets.ModelViewSet):
 	''' API endpoint to view/edit groups '''
 	queryset = Group.objects.all()
 	serializer_class = GroupSerializer
+
+class PingViewSet(viewsets.ModelViewSet):
+	''' API endpoint to view/edit pings '''
+	queryset = Ping.objects.all()
+	serializer_class = PingSerializer
 
 # Create your views here.
 def index(request):
