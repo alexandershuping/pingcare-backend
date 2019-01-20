@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 
 from backend.models import Ping
 from backend.serializers import UserSerializer, GroupSerializer, PingSerializer
@@ -19,6 +20,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class PingViewSet(viewsets.ModelViewSet):
 	''' API endpoint to view/edit pings '''
+	permission_classes = (AllowAny,)
 	queryset = Ping.objects.all()
 	serializer_class = PingSerializer
 
