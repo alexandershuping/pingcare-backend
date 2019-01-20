@@ -17,4 +17,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PingSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Ping
-		fields = ('latitude', 'longitude', 'ping_count', 'issue')
+		fields = ('latitude', 'longitude', 'ping_count', 'issue', 'text_loc')

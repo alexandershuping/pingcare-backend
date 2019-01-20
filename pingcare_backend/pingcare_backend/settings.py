@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+import private
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bq(g8p50xv=ic*1lm$^qyae2xu!s+3hx68sag48w0-leq=2%zc'
+SECRET_KEY = private.secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pingcare.biz']
 
 
 # Application definition
@@ -77,8 +79,12 @@ WSGI_APPLICATION = 'pingcare_backend.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': private.database['db_name'],
+		'USER': private.database['user'],
+		'PASSWORD': private.database['pass'],
+		'HOST': 'localhost',
+		'PORT': 3306
 	}
 }
 
@@ -129,3 +135,6 @@ REST_FRAMEWORK = {
 		'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 	]
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
